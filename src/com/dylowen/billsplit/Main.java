@@ -3,6 +3,7 @@ package com.dylowen.billsplit;
 import java.io.File;
 import java.io.IOException;
 
+import com.dylowen.billsplit.venmo.VenmoIntent;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -69,6 +70,12 @@ public class Main {
 
                     System.out.println(settings.toString());
 
+                    VenmoIntent intent = VenmoIntent.getAgent("browser");
+
+                    System.out.println(intent.charge(0.01, "AlexMousavi", "hell sjkdf lskjdf sldjfslk do"));
+                    System.out.println(intent.charge(0.01, "AlexMousavi", "hello"));
+
+
                     final Action action;
                     if (line.hasOption(GET_ACCESS_TOKEN.getOpt())) {
                         action = new GetAccessToken(settings);
@@ -78,6 +85,7 @@ public class Main {
                     }
 
                     action.execute();
+
                 }
                 catch (final IOException e) {
                     System.err.println("Could not read settings file: " + settingsPath + "\n" + e.getMessage());

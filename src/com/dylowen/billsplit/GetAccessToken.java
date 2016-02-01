@@ -34,7 +34,7 @@ public class GetAccessToken
         final String username = new String(console.readPassword("Username: "));
         final String password = new String(console.readPassword("Password: "));
 
-        final PlaidUserClient plaidUserClient = PlaidClients.testUserClient(settings.plaid.clientId, settings.plaid.secret);
+        final PlaidUserClient plaidUserClient = PlaidClients.testUserClient(settings.plaid.clientId, settings.plaid.secret, 60);
         final Credentials credentials = new Credentials(username, password);
 
         for (Map.Entry<String, Account> entry : settings.accounts.entrySet()) {
